@@ -1,15 +1,24 @@
 import React from 'react';
+import styled from 'styled-components';
 import Player from './components/Player';
 import Song from './components/Song';
 
+const PageStyle = styled.div`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`; 
 
 function App() {
   return (
-    <div className="App">
-      <h1>Music Player</h1>
-      <Song />
-      <Player />
-    </div>
+    <PageStyle>
+      <div className="App">
+        <Song />
+        <Player />
+      </div>
+    </PageStyle>
   );
 }
 
