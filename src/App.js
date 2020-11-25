@@ -14,7 +14,7 @@ const PageStyle = styled.div`
 
 function App() {
   const [songs, setSongs] = useState(data()); 
-  const [currentSong, setCurrentSong] = useState(songs[0]);
+  const [currentSong, setCurrentSong] = useState(songs[7]);
   const [isPlaying, setIsPlaying] = useState(false);
   return (
     <PageStyle>
