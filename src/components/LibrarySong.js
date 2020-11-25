@@ -26,10 +26,21 @@ const LibrarySongStyle = styled.div`
   }
 `;
 
-const LibrarySong = ({ song }) => {
+const LibrarySong = ({ song, songs, setCurrentSong, id, audioRef, isPlaying }) => {
+  const songSelectHandler = () => {
+    setCurrentSong(song);
+    if(isPlaying) {
+      const playPromise = audioRef.current.play();
+      if(playPromise !== undefined){
+        playPromise.then((audio) => {
+          audioRef.current.play();
+        });
+      }
+    }
+  }
   return(
     <LibrarySongStyle>
-      <div className="library-song">
+      <div onClick={songSelectHandler} className="library-song">
         <img src={song.cover} alt={song.name}></img>
         <div className="song-description">
           <h3>{song.name}</h3>
