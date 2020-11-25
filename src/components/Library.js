@@ -27,9 +27,9 @@ const LibaryStyle = styled.div`
     box-shadow: 2px 2px 20px rgb(0, 0, 0, 0.3);
     overflow: scroll;
     text-align: center;
-    h2 {
-      padding-top: 8%;
-    }
+      h2 {
+        padding-top: 8%;
+      }
     }
 `;
 

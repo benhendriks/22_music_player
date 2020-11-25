@@ -23,12 +23,28 @@ const LibrarySongStyle = styled.div`
       padding-top: 5px;
       font-size: 0.7rem;
     }
+    .selected {
+      background: red;  
+    }
   }
 `;
 
 const LibrarySong = ({ song, songs, setCurrentSong, id, audioRef, isPlaying }) => {
   const songSelectHandler = () => {
     setCurrentSong(song);
+    const newSongs = songs.map((song) => {
+      if(song.id === id){
+        return{
+          ...song,
+          active: true,
+        }
+      } else {
+        return {
+          ...song, 
+          active: false,
+        };
+      }
+    }); 
     if(isPlaying) {
       const playPromise = audioRef.current.play();
       if(playPromise !== undefined){
@@ -40,7 +56,7 @@ const LibrarySong = ({ song, songs, setCurrentSong, id, audioRef, isPlaying }) =
   }
   return(
     <LibrarySongStyle>
-      <div onClick={songSelectHandler} className="library-song">
+      <div onClick={songSelectHandler} className={`library-song ${song.active ? 'selected' :  ""}`}>
         <img src={song.cover} alt={song.name}></img>
         <div className="song-description">
           <h3>{song.name}</h3>
