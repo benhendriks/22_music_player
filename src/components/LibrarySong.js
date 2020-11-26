@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { playAudio } from '../util';
 
 const LibrarySongStyle = styled.div`
   .library-song {
@@ -43,14 +44,7 @@ const LibrarySong = ({ song, songs, setCurrentSong, id, audioRef, isPlaying, set
       }
     }); 
     setSongs(newSongs);
-    if(isPlaying) {
-      const playPromise = audioRef.current.play();
-      if(playPromise !== undefined){
-        playPromise.then((audio) => {
-          audioRef.current.play();
-        });
-      }
-    }
+    playAudio(isPlaying, audioRef);
   }
   return(
     <LibrarySongStyle>

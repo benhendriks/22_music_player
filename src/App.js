@@ -4,7 +4,7 @@ import Library from './components/Library';
 import Nav from './components/Nav';
 import Player from './components/Player';
 import Song from './components/Song';
-import data from './util';
+import data from './data';
 
 const PageStyle = styled.div`
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap');
@@ -41,12 +41,15 @@ function App() {
         <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
         <Song currentSong={currentSong} />
         <Player 
+          songs={songs}
           audioRef={audioRef}
           isPlaying={isPlaying} 
           setIsPlaying={setIsPlaying} 
           currentSong={currentSong} 
           setSongInfo={setSongInfo}
           songInfo={songInfo}
+          setCurrentSong={setCurrentSong}
+          setSongs={setSongs}
         />
         <Library 
           songs={songs} 
