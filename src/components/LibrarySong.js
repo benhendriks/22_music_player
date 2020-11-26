@@ -23,15 +23,12 @@ const LibrarySongStyle = styled.div`
       padding-top: 5px;
       font-size: 0.7rem;
     }
-    .selected {
-      background: red;  
-    }
   }
 `;
 
-const LibrarySong = ({ song, songs, setCurrentSong, id, audioRef, isPlaying }) => {
-  const songSelectHandler = () => {
-    setCurrentSong(song);
+const LibrarySong = ({ song, songs, setCurrentSong, id, audioRef, isPlaying, setSongs }) => {
+  const songSelectHandler = async () => {
+    await setCurrentSong(song);
     const newSongs = songs.map((song) => {
       if(song.id === id){
         return{
@@ -45,6 +42,7 @@ const LibrarySong = ({ song, songs, setCurrentSong, id, audioRef, isPlaying }) =
         };
       }
     }); 
+    setSongs(newSongs);
     if(isPlaying) {
       const playPromise = audioRef.current.play();
       if(playPromise !== undefined){

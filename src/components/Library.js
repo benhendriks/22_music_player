@@ -27,16 +27,26 @@ const LibaryStyle = styled.div`
     box-shadow: 2px 2px 20px rgb(0, 0, 0, 0.3);
     overflow: scroll;
     text-align: center;
+    transform: translateX(-100%);
+    transition: all 0.5s ease; 
+    opacity: 0;
       h2 {
         padding-top: 8%;
       }
+  }
+    .selected {
+      background: #c8e5fc;
+    }
+    .active-library {
+      transform: translateX(0%);
+      opacity: 1;
     }
 `;
 
-const Library = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
+const Library = ({ songs, setCurrentSong, audioRef, isPlaying, setSongs, libraryStatus }) => {
   return (
     <LibaryStyle>
-        <div className="library">
+        <div className={`library ${libraryStatus ? 'active-library' : ''}`}>
           <h2>Library</h2>
           <div className="library-songs">
             {songs.map((song) => (
@@ -44,9 +54,11 @@ const Library = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
                 songs={songs}
                 setCurrentSong={setCurrentSong} 
                 song={song} 
+                id={song.id}
                 key={song.id}
                 audioRef={audioRef}
                 isPlaying={isPlaying}
+                setSongs={setSongs}
               />
               ))}
           </div>
