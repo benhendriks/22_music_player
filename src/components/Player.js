@@ -17,9 +17,12 @@ const PlayerStyle = styled.div`
     background: #fff;
     border-radius: 8px;
     display: flex;
+    align-items: center;
     input {
       width: 100%;
-      padding: 1rem 0;
+      -webkit-appearance: none;
+      background: transparent;
+      cursor: pointer;
     }
     p {
       padding: 1rem;
@@ -34,6 +37,32 @@ const PlayerStyle = styled.div`
     svg {
       cursor: pointer;
     }
+  }
+  input[type='range']:focus {
+    outline: none;
+  }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+  }
+  .track {
+    background: rgb(200, 229, 252);
+    height: 1rem;
+    width: 100%;
+    position: relative;
+    border-radius: 1rem;   
+    overflow: hidden;
+  }
+  .animate-track {
+    background: rgb(204, 204, 204);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(0%);
+    pointer-events: none;
   }
 `;
 
@@ -87,19 +116,27 @@ const Player = ({ audioRef, currentSong, isPlaying, setIsPlaying, setSongInfo, s
     }
     playAudio(isPlaying, audioRef);
   };
+  const trackAnim = {
+    transform: `
+      translateX(${songInfo.animationPercentage}%)
+    `
+  };
 
   return(
     <PlayerStyle>
       <div className="player">
         <div className="time-control">
           <p>{songInfo.duration ? getTime(songInfo.currentTime) : '0:00'}</p>
-          <input 
-            min={0} 
-            max={songInfo.duration || 0} 
-            value={songInfo.currentTime} 
-            onChange={dragHandler}
-            type="range" 
-          />
+          <div style={{background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})`}} className="track">
+            <input 
+              min={0} 
+              max={songInfo.duration || 0} 
+              value={songInfo.currentTime} 
+              onChange={dragHandler}
+              type="range" 
+            />
+            <div style={trackAnim} className="animate-track"></div>
+          </div>
           <p>{getTime(songInfo.duration)}</p>
         </div>
         <div className="player-control">
