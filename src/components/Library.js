@@ -34,13 +34,19 @@ const LibaryStyle = styled.div`
         padding-top: 8%;
       }
   }
-    .selected {
-      background: #c8e5fc;
+  .selected {
+    background: #c8e5fc;
+  }
+  .active-library {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  @media screen and (max-width: 768px) {
+    .library {
+      width: 100%;
+      background: #fff;
     }
-    .active-library {
-      transform: translateX(0%);
-      opacity: 1;
-    }
+  }
 `;
 
 const Library = ({ songs, setCurrentSong, audioRef, isPlaying, setSongs, libraryStatus }) => {

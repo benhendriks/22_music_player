@@ -9,7 +9,7 @@ const SongStyle = styled.div`
     align-items: center;
     justify-content: center;
     img {
-      width: 20%;
+      width: 360px;
       border-radius: 50%;
     }
     h2 {
@@ -17,6 +17,13 @@ const SongStyle = styled.div`
     }
     h3 {
       font-size: 1rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .song-container {
+      img {
+        width: 60%;
+      }
     }
   }
 `;

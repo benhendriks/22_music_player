@@ -18,6 +18,12 @@ const PageStyle = styled.div`
     font-weight: 400;
     color: #6b6b6b;
   }
+  .App {
+    transition: all 0.5s ease;
+  }
+  .library-active {
+    margin-left: 20%;
+  }
 `; 
 
 function App() {
@@ -51,7 +57,7 @@ function App() {
   const [libraryStatus, setLibraryStatus] = useState(false);
   return (
     <PageStyle>
-      <div className="App">
+      <div className={`App ${libraryStatus ? 'library-active' : ''}`}>
         <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
         <Song currentSong={currentSong} />
         <Player 
